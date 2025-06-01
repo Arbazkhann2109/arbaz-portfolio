@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Arbaz Khan | Java Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --accent: #00b4d8;
+            --accent-gradient: linear-gradient(90deg, #00b4d8 0%, #4361ee 100%);
+            --text-light: #f1f1f1;
+            --text-muted: #b0b0b0;
+            --card-bg: #1e1e1e;
+            --border-radius: 14px;
+            --transition: 0.3s cubic-bezier(.4,0,.2,1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            scroll-behavior: smooth;
+            line-height: 1.6;
+        }
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0; left: 0;
+            background: rgba(18,18,18,0.95);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #222;
+        }
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            padding: 1rem 0;
+        }
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: color var(--transition);
+        }
+        nav a:hover, nav a.active {
+            color: var(--accent);
+        }
+        section {
+            min-height: 100vh;
+            padding: 5rem 0 3rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero {
+            background: url('https://i.postimg.cc/Pxvh3LWw/77605108771.png') center/cover no-repeat;
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(18,18,18,0.85);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--text-light);
+            max-width: 700px;
+        }
+        .hero-content h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
+        .cta-btn {
+            background: var(--accent-gradient);
+            color: #fff;
+            border: none;
+            padding: 0.9rem 2.2rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 24px 0 rgba(0,180,216,0.15);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+        .cta-btn:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 8px 32px 0 rgba(67,97,238,0.18);
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            max-width: 700px;
+            text-align: center;
+        }
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            box-shadow: 0 2px 16px 0 rgba(0,180,216,0.12);
+        }
+        .about-bio {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+        }
+        .education {
+            background: var(--card-bg);
+            padding: 1.2rem 2rem;
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+            color: var(--text-light);
+            box-shadow: 0 2px 12px 0 rgba(0,180,216,0.07);
+        }
+        .education strong {
+            color: var(--accent);
+        }
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 700px;
+            width: 100%;
+        }
+        .exp-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 12px 0 rgba(0,180,216,0.07);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+        .exp-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 8px 32px 0 rgba(67,97,238,0.13);
+        }
+        .exp-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .exp-date {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        .exp-desc {
+            font-size: 1.05rem;
+            color: var(--text-light);
+        }
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: center;
+            max-width: 700px;
+            margin-top: 1.5rem;
+        }
+        .skill-badge {
+            background: var(--card-bg);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 22px;
+            padding: 0.6rem 1.4rem;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            box-shadow: 0 2px 8px 0 rgba(0,180,216,0.08);
+            transition: background var(--transition), color var(--transition);
+        }
+        .skill-badge i {
+            font-size: 1.2rem;
+        }
+        .portfolio-projects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+            max-width: 900px;
+            width: 100%;
+        }
+        .project-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            min-width: 260px;
+            min-height: 180px;
+            color: var(--text-light);
+            box-shadow: 0 2px 12px 0 rgba(0,180,216,0.07);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: flex-start;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        .contact-item:hover {
+            color: var(--accent);
+        }
+        .contact-item i {
+            font-size: 1.3rem;
+            color: var(--accent);
+        }
+        .contact-form {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 12px 0 rgba(0,180,216,0.07);
+            max-width: 400px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .contact-form input, .contact-form textarea {
+            background: #181818;
+            border: 1px solid #222;
+            color: var(--text-light);
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            resize: none;
+            outline: none;
+            transition: border var(--transition);
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            border: 1px solid var(--accent);
+        }
+        .contact-form button {
+            background: var(--accent-gradient);
+            color: #fff;
+            border: none;
+            padding: 0.8rem 0;
+            border-radius: 22px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background var(--transition), transform var(--transition);
+        }
+        .contact-form button:hover {
+            background: linear-gradient(90deg, #4361ee 0%, #00b4d8 100%);
+            transform: translateY(-2px) scale(1.03);
+        }
+        @media (max-width: 900px) {
+            .portfolio-projects { flex-direction: column; align-items: center; }
+        }
+        @media (max-width: 700px) {
+            nav ul { gap: 1rem; }
+            .about-content, .experience-list, .skills-grid, .portfolio-projects { max-width: 95vw; }
+            section { padding: 4rem 0 2rem 0; }
+        }
+        @media (max-width: 500px) {
+            .hero-content h1 { font-size: 2rem; }
+            .section-title { font-size: 1.3rem; }
+            .exp-card, .education, .contact-form { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home / Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Arbaz Khan</h1>
+            <p>Java Developer | Spring Boot Enthusiast | Backend Focused</p>
+            <a href="#about"><button class="cta-btn">Learn More</button></a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-title">About Me</div>
+        <div class="about-content">
+            <img src="https://i.postimg.cc/bNfbhycj/profile-image.jpg" alt="Arbaz Khan" class="profile-pic">
+            <div class="about-bio">
+               I'm Arbaz Khan, a final-year B.Tech student at Technocrats Institute of Technology, specializing in backend development. I bring a solid foundation in Java, MySQL, and Spring Boot, and a deep passion for building robust, scalable, and high-performance backend systems. Currently, I’m sharpening my skills in RESTful API design and Spring MVC, aiming to deliver clean, efficient, and maintainable backend solutions. I thrive on solving real-world problems with code and I constantly exploring best practices in backend architecture.
+            </div>
+            <div class="education">
+                <strong>Bachelor of Technology</strong><br>
+                Technocrats Institute of Technology<br>
+                <span style="color:var(--text-muted);">Graduating 2026</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="section-title">Experience</div>
+        <div class="experience-list">
+            <div class="exp-card">
+                <div class="exp-title"><i class="fa-solid fa-briefcase"></i> Junior Java Developer Intern</div>
+                <div class="exp-date">July 2023 – Dec 2023</div>
+                <div class="exp-desc">Learned agile methodologies and Java backend development.</div>
+            </div>
+            <div class="exp-card">
+                <div class="exp-title"><i class="fa-brands fa-java"></i> Spring Boot Intern</div>
+                <div class="exp-desc">Gained hands-on experience with Spring Boot, REST APIs, and Spring MVC applications.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-title">Skills</div>
+        <div class="skills-grid">
+            <div class="skill-badge"><i class="fa-brands fa-java"></i> Java Development</div>
+            <div class="skill-badge"><i class="fa-solid fa-leaf"></i> Spring Boot</div>
+            <div class="skill-badge"><i class="fa-solid fa-code-branch"></i> Spring MVC</div>
+            <div class="skill-badge"><i class="fa-solid fa-database"></i> MySQL</div>
+            <div class="skill-badge"><i class="fa-solid fa-people-group"></i> Agile Software Development</div>
+            <div class="skill-badge"><i class="fa-solid fa-network-wired"></i> RESTful Web Development</div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="section-title">Portfolio</div>
+        <div class="portfolio-projects">
+            <div class="project-card">
+                <div class="project-title">Projects Coming Soon</div>
+                <div class="project-desc">Stay tuned for exciting backend and Java projects!</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-title">Contact</div>
+        <div class="contact-info">
+            <a class="contact-item" href="mailto:arbazkhann2109@gmail.com"><i class="fa-solid fa-envelope"></i> arbazkhann2109@gmail.com</a>
+            <div class="contact-item"><i class="fa-solid fa-phone"></i> +91 80854 58786</div>
+            <a class="contact-item" href="https://linkedin.com/in/arbaz-khan-1460a0304" target="_blank"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/arbaz-khan-1460a0304</a>
+            <a class="contact-item" href="https://github.com/Arbazkhann2109" target="_blank"><i class="fa-brands fa-github"></i> github.com/Arbazkhann2109</a>
+        </div>
+        <form class="contact-form" autocomplete="off">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <script>
+        // Smooth nav highlight on scroll
+        const navLinks = document.querySelectorAll('nav a');
+        const sections = Array.from(document.querySelectorAll('section'));
+        window.addEventListener('scroll', () => {
+            let current = sections[0].id;
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 80;
+                if (window.scrollY >= sectionTop) current = section.id;
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+            });
+        });
+
+        // Simple scroll animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.style.opacity = 1;
+                else entry.target.style.opacity = 0.5;
+            });
+        }, { threshold: 0.2 });
+        document.querySelectorAll('section').forEach(sec => {
+            sec.style.transition = 'opacity 0.7s';
+            observer.observe(sec);
+        });
+
+        // Prevent default form submission
+        document.querySelector('.contact-form').addEventListener('submit', e => {
+            e.preventDefault();
+            alert('Thank you for reaching out, Arbaz will get back to you soon!');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
